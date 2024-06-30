@@ -21,7 +21,7 @@ from llama_index.legacy import (
 )
 from transformers import pipeline
 
-os.environ["OPENAI_API_KEY"] = ""
+os.environ["OPENAI_API_KEY"] = "sk-proj-3cfjzAviivbfnkWKURC3T3BlbkFJcHMIeob21CDXfOyyWDD1"
 
 #def timeit():
 
@@ -44,13 +44,13 @@ class LocalOPT(LLM):
 
 
 def _call(self,prompt:str,stop=None) ->str:
-    response= self.pipeline(promtpt, max_new_tokens=256)[0]["generated_text"]
+    response= self.pipeline(prompt, max_new_tokens=256)[0]["generated_text"]
     return response[len(prompt) :]
 
 
 @property
-def _identifying_params():
-    return {"name_of_model":self.model_name}
+def _identifying_params(self):
+    return {"name_of_model": self.model_name}
 
 @property
 def _llm_type(self):
